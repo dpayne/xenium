@@ -12,6 +12,7 @@ find_package(Threads REQUIRED)
 find_package(Doxygen)
 
 option(BUILD_DOCUMENTATION "Create the HTML based documentation (requires Doxygen)" ${DOXYGEN_FOUND})
+option(BUILD_TESTS "Run tests" ON)
 
 file(GLOB_RECURSE XENIUM_FILES xenium/*.hpp)
 
@@ -71,4 +72,6 @@ if(BUILD_DOCUMENTATION)
 			VERBATIM)
 endif()
 
-add_test(AllTests gtest)
+if(BUILD_TESTS)
+    add_test(AllTests gtest)
+endif()
